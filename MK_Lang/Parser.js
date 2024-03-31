@@ -1,13 +1,15 @@
+// Превращает текст в массив из токенов
 function Parser(Code) {
-  let IgnoreString = true;
-  let Word = "";
+  let IgnoreString = true;  // Если true, то запись строки не идёт
+  let Word = "";            // Записанное слово
   
-  const TokensList = [];
+  const TokensList = [];    // Список токенов
   
   for (let i = 0; i < Code.length; i++) {
     const ch = Code[i], next = i >= Code.length? "": Code[i + 1];
     Word += ch;
     
+    // Запись строк
     if (ch == "'") {
       IgnoreString = IgnoreString? false: true;
       
@@ -18,6 +20,7 @@ function Parser(Code) {
       }
     }
     
+    // TODO: вынести в <see href="./Utils.js>" массив с семантикой
     if (["+", "-", "=", ":", "(", ")", ";"].includes(next) || next == " " || next == "\n" && IgnoreString) {
       TokensList.push(new Token("", Word.trim()));
       Word = "";
@@ -25,6 +28,7 @@ function Parser(Code) {
     }
   }
   
+  // Сортировка токенов
   return TokensList.map(function(i) {
     return new Token(
       KeyWordAnalyze(i.Text.trim()), i.Text.trim() 

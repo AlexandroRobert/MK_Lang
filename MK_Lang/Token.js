@@ -1,7 +1,9 @@
+// Вернёт новый токен
 function Token(Type, Text) {
   return { Type, Text }
 }
 
+// Вернёт тип токена исходя от переданного слова
 function KeyWordAnalyze(Word) {
   if (!isNaN(Word)) return "NUMBER";
   

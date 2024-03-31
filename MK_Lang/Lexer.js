@@ -1,5 +1,6 @@
+// Генерирует c++ код исходя из списка токенов, и бросает ошибки в случай неправильного построения токенов
 function Lexer(TokensList) {
-  let cppStr = "";
+  let cppStr = "";  // cpp код
   
   for (let i = 0; i < TokensList.length; i++) {
     const Ch = TokensList[i];
